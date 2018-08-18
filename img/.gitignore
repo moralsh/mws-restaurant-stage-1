@@ -1,0 +1,5 @@
+#ignore all minifications of images
+*_l*
+*_m*
+*_s*
+*_original*

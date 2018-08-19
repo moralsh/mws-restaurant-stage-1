@@ -12,10 +12,40 @@ class DBHelper {
     return `http://localhost:${port}/restaurants`;
   }
 
+  static get dbPromise() { // for IDB usage
+    return idb.open('restaurants', 1, function (upgradeDb) {
+      upgradeDb.createObjectStore('restaurantsStore', { keyPath: 'id' });
+    });
+  }
+
   /**
-   * Fetch all restaurants.
-   */
+  * Fetch all restaurants from IDB and store them.
+  */
   static fetchRestaurants(callback) {
+    DBHelper.dbPromise.then(db => {
+			if (!db) return;
+			const tx = db.transaction('restaurantsStore');
+      const store = tx.objectStore('restaurantsStore');
+			store.getAll().then(results => {
+        return fetch(DBHelper.DATABASE_URL).then(response => {
+						return response.json();
+				}).then(restaurants => {
+          // everything went ok, let's store them
+					const tx = db.transaction('restaurantsStore', 'readwrite');
+					const store = tx.objectStore('restaurantsStore');
+					restaurants.forEach(restaurant => {
+						store.put(restaurant);
+					})
+					callback(null, restaurants);
+				}).catch(error => {
+					// Something went wrong while fetching from the network
+					callback(error, null);
+				});
+			})
+		});
+  }
+
+  static fetchRestaurantsOld(callback) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', DBHelper.DATABASE_URL);
     xhr.onload = () => {

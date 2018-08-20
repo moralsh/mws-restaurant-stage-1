@@ -1,0 +1,30 @@
+{
+    "short_name": "RestReviews",
+    "name": "Udacity & Google MWS project Restaurant Reviews",
+    "display": "standalone",
+    "background_color": "#c3c3c3",
+    "theme_color": "#c3c3c3",
+    "icons": [
+      {
+        "src": "/img/icons/android-icon-48x48.png",
+        "type": "image/png",
+        "sizes": "48x48"
+      },
+      {
+        "src": "/img/icons/android-icon-96x96.png",
+        "type": "image/png",
+        "sizes": "96x96"
+      },
+      {
+        "src": "/img/icons/android-icon-192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/img/icons/splash.png",
+        "type": "image/png",
+        "sizes": "1010x1010"
+      }
+    ],
+    "start_url": "index.html?launcher=true"
+  }

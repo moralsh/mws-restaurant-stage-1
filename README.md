@@ -34,6 +34,10 @@ Gulp is your friend:
 
     npm install
     gulp images 
-    gulp serve
+    gulp serve or gulp serve:dist
+
+### Lighthouse reports 
+
+You can find the reports for the [dev server](reports/lighthouse-dev.html) and the [dist server](reports/lighthouse-dist.html)
 
 

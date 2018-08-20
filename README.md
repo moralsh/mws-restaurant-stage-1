@@ -38,6 +38,6 @@ Gulp is your friend:
 
 ### Lighthouse reports 
 
-You can find the reports for the [dev server](reports/lighthouse-dev.html) and the [dist server](reports/lighthouse-dist.html)
+You can find the reports for the [dev server](reports/LighthouseReportDev.pdf) and the [dist server](reports/LighthouseReportDev.pdf) (html also on the same folder)
 
 

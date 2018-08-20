@@ -33,7 +33,8 @@ const src = {
     html: '*.html',
     css: 'css/*.css',
     js: 'js/*.js',
-    img: 'img/'
+    img: 'img/',
+    icon: 'img/icons/'
   },
   dist: {
     html: 'dist/',
@@ -42,7 +43,8 @@ const src = {
     img: 'dist/img/'
   }
 };
-
+// TODO: /dist app also works (if you manually fix the TODO below), but there's an error that can be fixed by either modifying the initMapRest to not load on the index
+// or just building a index.min.js and restaurant.min.js for each page
 
 // watch files for changes and reload
 gulp.task('serve', () => {
@@ -68,8 +70,13 @@ gulp.task('serve:dist', () => {
   });
   // copy data folder to dist folder
   gulp.src(['data/**/*']).pipe(gulp.dest('dist/data/'));
+  // copy imgs and icons folder to dist folder
+  gulp.src(['img/**/*']).pipe(gulp.dest('dist/img/'));
   // copy manifest to dist folder
-  // gulp.src(['./manifest.json']).pipe(gulp.dest('./dist/'));
+  gulp.src(['./manifest.json']).pipe(gulp.dest('./dist/'));
+  // copy service worker to dist folder
+  gulp.src(['./sw.js']).pipe(gulp.dest('./dist/'));
+  // Watches
   gulp.watch([src.dev.html, src.dev.css, src.dev.js]).on('change', reload);
 });
 
@@ -101,6 +108,7 @@ gulp.task('minify-html', () => {
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest(src.dist.html));
 });
+// TODO: change script tags inside HTML to include just the all.min.js
 
 // Lint Task
 gulp.task('lint', function() {

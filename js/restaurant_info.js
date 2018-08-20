@@ -5,13 +5,13 @@ var newMap;
  * Initialize map as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {  
-  initMap();
+  initMapRes();
 });
 
 /**
  * Initialize leaflet map
  */
-initMap = () => {
+initMapRes = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
       console.error(error);

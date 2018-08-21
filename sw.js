@@ -1,6 +1,7 @@
 const cacheName = "mws-restaurant-cache-v1";
 const cacheFiles = [
 	'/',
+	'/manifest.json',
 	'/restaurant.html',
 	'/js/dbhelper.js',
 	'/js/main.js',
@@ -18,7 +19,12 @@ const cacheFiles = [
 	'/img/9.jpg',
 	'/img/10.jpg',
 	'/img/favicon.ico',
-	'https://fonts.googleapis.com/css?family=Lato:400i|Lobster'
+	'/img/icons/android-icon-48x48.png',
+	'/img/icons/android-icon-96x96.png',
+	'/img/icons/android-icon-192x192.png',
+	'/img/icons/splash.png',
+	'https://fonts.googleapis.com/css?family=Lato:400i|Lobster',
+	'http://localhost:1337/restaurants'
 ]
 
 // Installing

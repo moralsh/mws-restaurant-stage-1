@@ -23,26 +23,26 @@ class DBHelper {
   */
   static fetchRestaurants(callback) {
     DBHelper.dbPromise.then(db => {
-			if (!db) return;
-			const tx = db.transaction('restaurantsStore');
+      if (!db) return;
+      const tx = db.transaction('restaurantsStore');
       const store = tx.objectStore('restaurantsStore');
-			store.getAll().then(results => {
+      store.getAll().then(results => {
         return fetch(DBHelper.DATABASE_URL).then(response => {
-						return response.json();
-				}).then(restaurants => {
+          return response.json();
+        }).then(restaurants => {
           // everything went ok, let's store them
-					const tx = db.transaction('restaurantsStore', 'readwrite');
-					const store = tx.objectStore('restaurantsStore');
-					restaurants.forEach(restaurant => {
-						store.put(restaurant);
-					})
-					callback(null, restaurants);
-				}).catch(error => {
-					// Something went wrong while fetching from the network
-					callback(error, null);
-				});
-			})
-		});
+          const tx = db.transaction('restaurantsStore', 'readwrite');
+          const store = tx.objectStore('restaurantsStore');
+          restaurants.forEach(restaurant => {
+            store.put(restaurant);
+          })
+          callback(null, restaurants);
+        }).catch(error => {
+          // Something went wrong while fetching from the network
+          callback(error, null);
+        });
+      })
+    });
   }
 
   static fetchRestaurantsOld(callback) {
